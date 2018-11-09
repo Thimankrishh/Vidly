@@ -1,0 +1,47 @@
+﻿@model Vidly.ViewModels.RandomMovieViewModel
+
+
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var className = Model.Customers.Count > 0 ? "Popular" : null;
+}
+
+@{
+    var txt = "";
+    if (DateTime.Now.Hour > 12)
+    {txt = "Good Evening";}
+    else
+    {txt = "Good Morning";}
+}
+
+<h2 class="@className">@Model.Movie.Name</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <text> No one has rented this movie </text>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+
+        }
+
+        @for(var i = 10; i < 21; i++)
+        {<p>Line @i</p>}
+
+    </ul>
+
+    <p>@DateTime.Now.Hour</p>
+
+  
+    <p style="font-size: larger"> The message is @txt</p>
+}
+
+
